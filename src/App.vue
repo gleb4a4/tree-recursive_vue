@@ -1,17 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" v-if="mainTree">
+    <Tree :mainTree="mainTree" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import { SET_TREE_DATA } from "@/store/MutationTypes";
+import apiData from "../api_response.json";
+import Tree from "@/components/Tree/Tree.vue";
+import { mapState } from "vuex";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Tree,
+  },
+  computed: {
+    ...mapState({
+      mainTree: "treeData",
+    }),
+  },
+  mounted() {
+    this.$store.commit(SET_TREE_DATA, apiData);
   },
 };
 </script>
@@ -24,5 +33,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.d-flex {
+  display: flex;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
 }
 </style>
