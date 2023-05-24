@@ -37,6 +37,9 @@ export default {
 .d-flex {
   display: flex;
 }
+.flex-column {
+  flex-direction: column;
+}
 .align-items-center {
   align-items: center;
 }
